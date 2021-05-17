@@ -1,8 +1,6 @@
-import express from 'express';
-import { PORT } from '@constants';
+import app from './app';
+import upload from './views/upload';
+import get from './views/get';
 
-const app = express();
-
-app.listen(PORT, () => {
-  console.log(`Listening at ${PORT} port`)
-});
+app.post('/upload/', upload);
+app.get('/get/', get);
