@@ -5,12 +5,12 @@ const upload = (req, res) => {
   const file = req.files[REQ_FILE_NAME];
   const camID: string = req.body[REQ_CAM_ID];
 
-  if (!camID) {
+  /*if (!camID) {
     const errorMessage = 'Error: CamID not provided';
     res.status(400).send(errorMessage);
     console.error(errorMessage);
     return;
-  }
+  }*/
 
   if (!file) {
     const errorMessage = 'Error: Image not provided';
@@ -22,7 +22,7 @@ const upload = (req, res) => {
   let fileName: string;
 
   try {
-    fileName = uploadImage(camID, file);
+    fileName = uploadImage('1', file);
   } catch (e) {
     res.status(400).send('Something went wrong');
   }
