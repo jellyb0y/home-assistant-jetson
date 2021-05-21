@@ -1,0 +1,17 @@
+{
+  "name": false,
+  "version": false,
+  "description": false,
+  "documentation_path": false,
+  "author": {},
+  "url": false,
+  "scripts": [],
+  "dependencies": {
+    "face-recognition": "1.3.0",
+    "numpy": "1.20.3"
+  },
+  "dev_dependencies": {},
+  "python_requires": ">=3.8.5",
+  "classifiers": [],
+  "include_package_data": false
+}

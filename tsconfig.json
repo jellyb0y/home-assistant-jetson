@@ -11,8 +11,9 @@
     "experimentalDecorators": true,
     "downlevelIteration": true,
     "paths": {
-      "@constants": ["src/constants.ts"],
+      "@constants": ["src/utils/constants.ts"],
       "@types": ["src/types.ts"],
+      "@utils/*": ["src/utils/*"],
       "@root/*": ["src/*"]
     }
   },

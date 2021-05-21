@@ -1,6 +1,11 @@
+# NodeJS
 node_modules/
 dist/*
 !dist/.gitkeep
 public/*/*
 !public/*/.gitkeep
 
+# Python
+venv
+*.pyc
+__pycache__

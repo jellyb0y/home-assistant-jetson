@@ -1,4 +1,4 @@
-import { getProcessedImage } from '@root/storage';
+import { getProcessedImage } from '@utils/storage';
 import { REQ_CAM_ID } from '@constants';
 
 const get = (req, res) => {
