@@ -1,4 +1,4 @@
-import { REQ_FILE_NAME/* , REQ_CAM_ID */, PICTURE_DIST_DIR } from '@constants';
+import { REQ_FILE_NAME, REQ_CAM_ID, PICTURE_DIST_DIR } from '@constants';
 import { addImageToQueue, setImageAsProcessed } from '@utils/storage';
 import processFile from '@utils/pymodules';
 
@@ -6,14 +6,14 @@ import type { IUploadedImage } from '@utils/storage/storage.types';
 
 const upload = (req, res): Promise<void> => {
   const file = req.files[REQ_FILE_NAME];
-  // const camID: string = req.body[REQ_CAM_ID];
+  const camID: string = req.body[REQ_CAM_ID];
 
-  /*if (!camID) {
+  if (!camID) {
     const errorMessage = 'Error: CamID not provided';
     res.status(400).send(errorMessage);
     console.error(errorMessage);
     return;
-  }*/
+  }
 
   if (!file) {
     const errorMessage = 'Error: Image not provided';
@@ -22,7 +22,7 @@ const upload = (req, res): Promise<void> => {
     return;
   }
 
-  return addImageToQueue('1', file)
+  return addImageToQueue(camID, file)
     .then((uploadedImage: IUploadedImage) => {
       if (!uploadedImage) {
         res.status(200).send('Wait');
@@ -36,7 +36,7 @@ const upload = (req, res): Promise<void> => {
       return processFile(uploadedImage.path, distFileName)
         .then(() => {
           console.log(`File processed and saved to ${distFileName}`);
-          setImageAsProcessed('1', distFileName);
+          setImageAsProcessed(camID, distFileName);
         })
         .catch(console.error);
     })

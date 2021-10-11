@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "module": "commonjs",
-    "target": "es2015",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "skipLibCheck": true,
-    "outDir": "dist",
     "sourceMap": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
     "paths": {
-      "@constants": ["src/utils/constants.ts"],
-      "@types": ["src/types.ts"],
-      "@utils/*": ["src/utils/*"],
-      "@root/*": ["src/*"]
+      "@constants": ["./src/utils/constants.ts"],
+      "@types": ["./src/types.ts"],
+      "@utils/*": ["./src/utils/*"],
+      "@root/*": ["./src/*"]
     }
   },
-  "exclude": ["node_modules/*", "**/node_modules/*"]
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

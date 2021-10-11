@@ -1,6 +1,6 @@
 import { storage } from './storage';
 import { PICTURE_DIR } from '@constants';
-import { unlink } from 'fs';
+import { unlink, writeFile } from 'fs';
 
 import type * as T from './storage.types';
 
@@ -20,11 +20,11 @@ export const addImageToQueue = (camID: string, image): Promise<T.IUploadedImage>
     }
   
     const seed = `${Math.floor(Math.random() * 1000)}${Date.now()}`;
-    const fileType = image.mimetype.split('/')[1];
+    const fileType = image.mimetype?.split('/')[1] || 'jpg';
     const fileName = `${seed}.${fileType}`;
     const filePath = `${PICTURE_DIR}/${seed}.${fileType}`;
-  
-    image.mv(filePath, () => {
+
+    const callback = () => {
       storage[camID] = {
         ...storage[camID],
         queued: filePath
@@ -35,7 +35,13 @@ export const addImageToQueue = (camID: string, image): Promise<T.IUploadedImage>
         type: fileType,
         name: fileName
       });
-    });
+    };
+
+    if (image instanceof Buffer) {
+      writeFile(filePath, image, callback);
+    } else {
+      image.mv(filePath, callback);
+    }
   });
 
 export const setImageAsProcessed = (camID: string, dist: string): Promise<void> =>
