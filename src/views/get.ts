@@ -4,8 +4,6 @@ import { REQ_CAM_ID } from '@constants';
 const get = (req, res) => {
   const camID: string = req.query[REQ_CAM_ID];
 
-  console.log(req.query, camID)
-
   if (!camID) {
     const errorMessage = 'Error: CamID not provided';
     res.status(400).send(errorMessage);
