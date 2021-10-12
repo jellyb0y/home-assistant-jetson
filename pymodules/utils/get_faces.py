@@ -4,7 +4,7 @@ from glob import glob
 
 import re
 
-face_name_regexp = re.compile(r'/([^/.]*)\.')
+face_name_regexp = re.compile(r'/([^/.]*)\.[^.]+$')
 
 def get_know_faces():
     face_images = glob(f'{FACES_DIR}/*.jpg')
